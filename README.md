@@ -4,6 +4,8 @@ The goal is to create an online unified repository of Massachusetts Courts "Lawy
 
 This project will be a password-protected front-end client for data entry and retrieval against this Open Referral API instance: http://developer.open.referral.adopta.agency/
 
+Data from the 35 Court based programs in this list will be entered in the database: https://www.masslegalservices.org/content/all-programs-legal-resource-finder
+
 This API backend will eventually be replaced with our own custom instance running the code here: https://github.com/adopta-agency/open-referral-api. Use the contacts listed in that README if you have any questions about their project.
 
 See the wiki for more details: https://github.com/codeforboston/lawyer-for-the-day/wiki
