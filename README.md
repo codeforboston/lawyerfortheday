@@ -6,6 +6,6 @@ This project will be implementing a password-protected front-end client for data
 
 This API backend will eventually be replaced with our own custom instance running the code here: https://github.com/adopta-agency/open-referral-api. Use the contacts listed in that README if you have any questions about their project.
 
-Data from the 35 Court based programs on this list will be entered into the database via the API: https://www.masslegalservices.org/content/all-programs-legal-resource-finder
+Data from the 35 Court based programs on this list will be entered into a database via the API: https://www.masslegalservices.org/content/all-programs-legal-resource-finder
 
 See the wiki for more details: https://github.com/codeforboston/lawyer-for-the-day/wiki
