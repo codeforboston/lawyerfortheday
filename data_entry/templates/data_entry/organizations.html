@@ -1,0 +1,66 @@
+<html>
+<head>
+  <script src="/static/js/jquery-3.2.1.min.js"></script>
+  <script src="/static/js/underscore-min.js"></script>
+  <script src="/static/js/backbone-min.js"></script>
+</head>
+
+<body>
+  <ul id="list"></ul>
+  <div id="testdiv"></div>
+
+  <script type="text/javascript">
+  // begin functions
+  function addOrganizations(collection, response, options) {
+    _.each(collection, addOrganization);
+  }
+
+  function addOrganization(element, index, list) {
+    var org = new Organization({
+      name: list.models[index].attributes["name"],
+      description: list.models[index].attributes["description"]
+    });
+    orgs.add(org);
+    addOrganizationView(org);
+  }
+
+  function addOrganizationView(organization) {
+    var orgView = new OrganizationView({
+      model: organization
+    });
+    var rend = orgView.render();
+    $("#list").append(orgView.render().el);
+  }
+  // end functions
+
+  var Organization = Backbone.Model.extend({
+    defaults: {
+      name:         "",
+      description:  ""
+    }
+  });
+
+  var Organizations = Backbone.Collection.extend({
+    model: Organization,
+    url: 'http://api.open.referral.adopta.agency/organizations/',
+    //url: 'http://api.open.referral.adopta.agency/organizations/?page=1&per_page=4',
+  });
+
+  var OrganizationView = Backbone.View.extend({
+    tagName: "li",
+    template: _.template("<b><%= name %></b>: <%= description %>"),
+    render: function() {
+      this.$el.html(this.template({
+        name: this.model.attributes.name,
+        description: this.model.attributes.description
+      }));
+      return this;
+    }
+  });
+
+  var orgs = new Organizations();
+  orgs.fetch({success: addOrganizations});
+
+  </script>
+</body>
+</html>
