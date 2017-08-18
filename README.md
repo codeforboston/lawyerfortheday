@@ -12,7 +12,7 @@ See the wiki for more details: https://github.com/codeforboston/lawyer-for-the-d
 
 ## Installation
 
-Current functionality: A simple GET request for organizations.
+Current functionality: A simple GET request for organizations. Uses Backbone.js to sync fetched data with views.
 
 * [Install Django](https://docs.djangoproject.com) and Python on local machine (this project was developed with Python 2.7.10, Django 1.11.3
 * Clone project to local directory
