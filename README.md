@@ -9,3 +9,15 @@ This API backend will eventually be replaced with our own custom instance runnin
 Data from the 35 Court based programs on this list will be entered into a database via the API: https://www.masslegalservices.org/content/all-programs-legal-resource-finder
 
 See the wiki for more details: https://github.com/codeforboston/lawyer-for-the-day/wiki
+
+## Installation
+
+* Install Django(https://docs.djangoproject.com) and Python on local machine (this project was developed with Python 2.7.10, Django 1.11.3
+* Clone project to local directory
+    ```
+    cd lawyer_for_the_day/
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py runserver
+    ```
+* Get organizations page: http://127.0.0.1:8000/organizations/
