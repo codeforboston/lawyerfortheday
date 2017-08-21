@@ -13,6 +13,10 @@ def locations(request):
 def organizations(request):
     return render(request, 'data_entry/organizations.html')
 
+def organization(request, organization_id):
+    return render(request, 'data_entry/organization.html',
+        {'organization_id': organization_id})
+
 def services(request):
     return render(request, 'data_entry/index.html')
 

@@ -22,5 +22,6 @@ from data_entry import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^organizations/$', views.organizations),
+    url(r'^organizations/(?P<organization_id>[\w-]+)/$', views.organization),
     url(r'^sample_json/$', views.sample_json)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
