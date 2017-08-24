@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+  <div class="container">
+    <h1>Reactive Forms</h1>
+    <service-detail></service-detail>
+  </div>`
 })
-export class AppComponent {
-  title = 'app';
-}
+export class AppComponent { }
