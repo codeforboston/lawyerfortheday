@@ -6,12 +6,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ServiceDetailComponent } from './service-detail.component';
+import { ServiceListComponent } from './service-list.component';
+import { LegalServicesService } from './legal-services.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServiceDetailComponent
+    ServiceDetailComponent,
+    ServiceListComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,7 +22,7 @@ import { ServiceDetailComponent } from './service-detail.component';
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [LegalServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

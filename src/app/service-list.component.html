@@ -1,0 +1,7 @@
+<nav>
+    <a *ngFor="let service of services" (click)="onSelect(service)">{{service.name}}<br/></a>
+</nav>
+
+<div *ngIf="selectedService">
+    <service-detail [service]="selectedService"></service-detail>
+</div>

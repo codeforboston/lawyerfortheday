@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Service, Organization } from './data-model';
@@ -8,6 +8,8 @@ import { Service, Organization } from './data-model';
     templateUrl: './service-detail.component.html'
 })
 export class ServiceDetailComponent {
+    @Input() service: Service;
+
     serviceForm: FormGroup;
 
     constructor(private fb: FormBuilder) {
@@ -18,10 +20,7 @@ export class ServiceDetailComponent {
         this.serviceForm = this.fb.group({
             name: ['', Validators.required ], // FormControl
             status: '',
-            organization: this.fb.group({
-                name: '',
-                description: ''
-            })
+            organization: this.fb.group(new Organization())
         });
     }
 }

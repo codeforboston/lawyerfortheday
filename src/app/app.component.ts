@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
   <div class="container">
-    <h1>Reactive Forms</h1>
-    <service-detail></service-detail>
+    <h1>Services</h1>
+    <service-list></service-list>
   </div>`
 })
-export class AppComponent { }
+export class AppComponent {}
