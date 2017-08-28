@@ -1,9 +1,40 @@
-<h2>Service Detail</h2>
-<h3><i>Just a FormControl</i></h3>
 <form [formGroup]="serviceForm" novalidate>
+  <div formGroupName="organization" class="well well-lg">
+    <h4>Organization</h4>
+    <div class="form-group">
+      <label class="center-block">Name:
+        <input class="form-control" formControlName="name">
+      </label>
+    </div>
+    <div class="form-group">
+        <label class="center-block">Description:
+          <input class="form-control" formControlName="description">
+        </label>
+      </div>
+  </div>
   <div class="form-group">
     <label class="center-block">Name:
       <input class="form-control" formControlName="name">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Alternate Name:
+      <input class="form-control" formControlName="alternateName">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Description:
+      <input class="form-control" formControlName="description">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Url:
+      <input class="form-control" formControlName="url">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Email:
+      <input class="form-control" formControlName="email">
     </label>
   </div>
   <div class="form-group">
@@ -11,20 +42,39 @@
       <input class="form-control" formControlName="status">
     </label>        
   </div>
-  <div formGroupName="organization" class="well well-lg">
-      <h4>Organization</h4>
-      <div class="form-group">
-        <label class="center-block">Name:
-          <input class="form-control" formControlName="name">
-        </label>
-      </div>
-      <div class="form-group">
-          <label class="center-block">Description:
-            <input class="form-control" formControlName="description">
-          </label>
-        </div>
-    </div>
+  <div class="form-group">
+    <label class="center-block">Interpretation Services:
+      <input class="form-control" formControlName="interpretationServices">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Application Process:
+      <input class="form-control" formControlName="applicationProcess">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Wait Time:
+      <input class="form-control" formControlName="waitTime">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Fees:
+      <input class="form-control" formControlName="fees">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Accreditations:
+      <input class="form-control" formControlName="accreditations">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Licenses:
+      <input class="form-control" formControlName="licenses">
+    </label>
+  </div>
 </form>
+<!--
 <p> Form value: {{ serviceForm.value | json }}</p>
 <p> Form status: {{ serviceForm.status | json }}</p>
+-->
 

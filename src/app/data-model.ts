@@ -13,7 +13,7 @@ export class Organization {
 
 export class Service {
     id = '';
-    organization: Organization;
+    organization_id = '';
     location: Location;
     program_id = '';
     name = '';

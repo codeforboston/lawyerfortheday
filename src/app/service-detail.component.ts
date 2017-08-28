@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Service, Organization } from './data-model';
+import { LegalServicesService } from './legal-services.service';
 
 @Component({
     selector: 'service-detail',
@@ -12,16 +13,81 @@ export class ServiceDetailComponent {
 
     serviceForm: FormGroup;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, 
+        private webService: LegalServicesService) {
         this.createForm();
     }
 
     createForm() {
         this.serviceForm = this.fb.group({
             name: ['', Validators.required ], // FormControl
+            alternateName: '',
+            description: '',
+            url: '',
+            email: '',
             status: '',
+            interpretationServices: '',
+            applicationProcess: '',
+            waitTime: '',
+            fees: '',
+            accreditations: '',
+            licenses: '',
             organization: this.fb.group(new Organization())
         });
+    }
+
+    ngOnChanges() {
+        this.serviceForm.patchValue({
+            name: this.service.name
+        });
+        this.serviceForm.patchValue({
+            alternateName: this.service.alternate_name
+        });
+        this.serviceForm.patchValue({
+            description: this.service.description
+        });
+        this.serviceForm.patchValue({
+            url: this.service.url
+        });
+        this.serviceForm.patchValue({
+            email: this.service.email
+        });
+        this.serviceForm.patchValue({
+            status: this.service.status
+        });
+        this.serviceForm.patchValue({
+            interpretationServices: this.service.interpretation_services
+        });
+        this.serviceForm.patchValue({
+            applicationProcess: this.service.application_process
+        });
+        this.serviceForm.patchValue({
+            waitTime: this.service.wait_time
+        });
+        this.serviceForm.patchValue({
+            fees: this.service.fees
+        });
+        this.serviceForm.patchValue({
+            accreditations: this.service.accreditations
+        });
+        this.serviceForm.patchValue({
+            licenses: this.service.licenses
+        });
+
+        if (this.service.organization_id != '') {
+            this.webService.getOrganization(this.service.organization_id).then(
+                organization => {
+                    this.serviceForm.patchValue({
+                        organization: organization
+                    });
+                }
+            );   
+        }
+        else {
+            this.serviceForm.patchValue({
+                organization: new Organization()
+            });
+        }
     }
 }
 

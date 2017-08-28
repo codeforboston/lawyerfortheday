@@ -11,12 +11,17 @@ export class ServiceListComponent implements OnInit {
     selectedService: Service;
     services: Service[];
 
-    constructor(private service: LegalServicesService) { }
+    constructor(private webService: LegalServicesService) { }
 
     ngOnInit(): void {
-        this.service.getLegalServices().then(
-            services => this.services = services);
-      }
+       this.webService.getLegalServices().then(
+        services => {
+            this.services = services;
+            if (this.services.length > 0) {
+                this.onSelect(this.services[0]);
+            }
+        });
+    }
 
     onSelect(service: Service): void {
         this.selectedService = service;
