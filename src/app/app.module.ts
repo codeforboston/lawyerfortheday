@@ -7,6 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ServiceDetailComponent } from './service-detail.component';
 import { ServiceListComponent } from './service-list.component';
+import { OrganizationComponent } from './organization.component';
+import { LocationComponent } from './location.component';
+import { RegularScheduleComponent } from './regular-schedule.component';
 import { LegalServicesService } from './legal-services.service';
 
 
@@ -15,6 +18,9 @@ import { LegalServicesService } from './legal-services.service';
     AppComponent,
     ServiceDetailComponent,
     ServiceListComponent,
+    OrganizationComponent,
+    LocationComponent,
+    RegularScheduleComponent
   ],
   imports: [
     BrowserModule,

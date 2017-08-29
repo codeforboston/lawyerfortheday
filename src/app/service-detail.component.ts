@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { Service, Organization } from './data-model';
+import { Service, Organization, Location, RegularSchedule } from './data-model';
 import { LegalServicesService } from './legal-services.service';
 
 @Component({
@@ -10,7 +9,9 @@ import { LegalServicesService } from './legal-services.service';
 })
 export class ServiceDetailComponent {
     @Input() service: Service;
-
+    organization: Organization;
+    location: Location;
+    regularSchedule: RegularSchedule;
     serviceForm: FormGroup;
 
     constructor(private fb: FormBuilder, 
@@ -32,7 +33,9 @@ export class ServiceDetailComponent {
             fees: '',
             accreditations: '',
             licenses: '',
-            organization: this.fb.group(new Organization())
+            organization: this.fb.group(new Organization()),
+            location: this.fb.group(new Location()),
+            regularSchedule: this.fb.group(new RegularSchedule())
         });
     }
 
@@ -75,18 +78,14 @@ export class ServiceDetailComponent {
         });
 
         if (this.service.organization_id != '') {
-            this.webService.getOrganization(this.service.organization_id).then(
+            this.webService.getOrganization(this.service.organization_id).then( 
                 organization => {
-                    this.serviceForm.patchValue({
-                        organization: organization
-                    });
+                   this.organization = organization;
                 }
-            );   
+            );
         }
         else {
-            this.serviceForm.patchValue({
-                organization: new Organization()
-            });
+            this.organization = new Organization();
         }
     }
 }

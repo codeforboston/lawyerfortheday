@@ -1,0 +1,20 @@
+<form [formGroup]="regularScheduleForm" novalidate>
+    <div class="well well-lg">
+        <h4>Regular Schedule</h4>
+        <div class="form-group">
+            <label class="center-block">Weekday:
+            <input class="form-control" formControlName="weekday">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="center-block">Opens at:
+            <input class="form-control" formControlName="opensAt">
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="center-block">Closes at:
+            <input class="form-control" formControlName="closesAt">
+            </label>
+        </div>
+    </div>
+</form>

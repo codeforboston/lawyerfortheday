@@ -7,7 +7,7 @@ import { Service, Organization } from './data-model';
 
 @Injectable()
 export class LegalServicesService {
-    private serviceUrl = 'http://api.open.referral.adopta.agency/services/?per_page=5';
+    private serviceUrl = 'http://api.open.referral.adopta.agency/services/?per_page=15';
     private organizationUrl = "http://api.open.referral.adopta.agency/organizations/";
 
     constructor(private http: Http) { }

@@ -14,7 +14,7 @@ export class Organization {
 export class Service {
     id = '';
     organization_id = '';
-    location: Location;
+    location_id = '';
     program_id = '';
     name = '';
     alternate_name = '';
@@ -32,11 +32,21 @@ export class Service {
 
 export class Location {
     id = '';
-//    organization: Organization;
+    organization_id = '';
     name = '';
     alternate_name = '';
     description = '';
     transportation = '';
     latitude = '';
     longitude = '';
-  }
+}
+
+export class RegularSchedule {
+    id = '';
+    service_id = '';
+    location_id = '';
+    service_at_location_id = '';
+    weekday = 0;
+    opens_at = '';
+    closes_at = '';
+}

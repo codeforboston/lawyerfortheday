@@ -1,17 +1,5 @@
 <form [formGroup]="serviceForm" novalidate>
-  <div formGroupName="organization" class="well well-lg">
-    <h4>Organization</h4>
-    <div class="form-group">
-      <label class="center-block">Name:
-        <input class="form-control" formControlName="name">
-      </label>
-    </div>
-    <div class="form-group">
-        <label class="center-block">Description:
-          <input class="form-control" formControlName="description">
-        </label>
-      </div>
-  </div>
+  <organization-detail [organization]="organization"></organization-detail>
   <div class="form-group">
     <label class="center-block">Name:
       <input class="form-control" formControlName="name">
@@ -72,6 +60,8 @@
       <input class="form-control" formControlName="licenses">
     </label>
   </div>
+  <location-detail [location]="location"></location-detail>
+  <regular-schedule-detail [regularSchedule]="regularSchedule"></regular-schedule-detail>
 </form>
 <!--
 <p> Form value: {{ serviceForm.value | json }}</p>

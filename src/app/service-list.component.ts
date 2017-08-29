@@ -18,7 +18,7 @@ export class ServiceListComponent implements OnInit {
         services => {
             this.services = services;
             if (this.services.length > 0) {
-                this.onSelect(this.services[0]);
+                this.onSelect(this.services[0]); // select and display 1st one
             }
         });
     }
