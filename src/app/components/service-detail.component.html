@@ -1,0 +1,140 @@
+<form [formGroup]="serviceForm" novalidate>
+  <h3>Service Form</h3>
+
+  <div class="form-group">
+      <label class="center-block">Organization:
+        <input class="form-control" formControlName="organizationName">
+      </label>
+    </div>
+  <div class="form-group">
+    <label class="center-block">Name:
+      <input class="form-control" formControlName="name">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Description:
+      <textarea class="form-control" formControlName="description"></textarea>
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="half-width">Url:
+      <input class="form-control" formControlName="url">
+    </label>
+    <label class="half-width">Email:
+      <input class="form-control" formControlName="email">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="half-width">Status:
+      <input class="form-control" formControlName="status">
+    </label>        
+    <label class="half-width">Fees:
+      <input class="form-control" formControlName="fees">
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Application Process:
+      <textarea class="form-control" formControlName="applicationProcess"></textarea>
+    </label>
+  </div>
+
+  <!-- <div class="form-group">
+    <h4>Organization</h4>
+    <select class="form-control" formControlName="organization">
+      <option *ngFor="let organization of organizations" [value]="organization">{{organization.name}}
+      </option>
+    </select>
+  </div> -->
+
+  <div class="form-group">
+    <div formGroupName="program">
+      <label class="center-block">Program Name
+        <input class="form-control" formControlName="name">
+      </label>
+    </div>
+  </div>
+
+  <div formGroupName="contact" class="well well-lg">
+    <h4>Contact</h4>
+    <label class="half-width">Name:
+      <input class="form-control" formControlName="name">
+    </label>
+    <label class="half-width">Title:
+      <input class="form-control" formControlName="title">
+    </label>
+  </div>
+
+  <div formGroupName="physicalAddress" class="well well-lg">
+    <h4>Address</h4>
+    <label class="center-block">Line 1:
+      <input class="form-control" formControlName="address1">
+    </label> 
+    <label class="center-block">Line 2:
+      <input class="form-control" formControlName="address2">
+    </label>
+    <label class="half-width">City:
+      <input class="form-control" formControlName="city">
+    </label>
+    <label class="half-width">State:
+      <input class="form-control" formControlName="stateProvince">
+    </label>
+    <label class="half-width">Postal Code:
+      <input class="form-control" formControlName="postalCode">
+    </label>
+    <label class="half-width">Country:
+      <input class="form-control" formControlName="country">
+    </label>
+  </div>
+
+  <div formArrayName="contactNumberFA" class="well well-lg">
+    <h4>Contact Numbers</h4>
+    <div *ngFor="let contactNumber of contactNumberFA.controls; let i=index" [formGroupName]="i" >
+      <!-- The repeated phone template -->
+      <div style="margin-left: 1em;">
+        <div class="form-group">
+          <label>Number:
+            <input class="form-control" formControlName="number">
+          </label>
+          <label>Extension:
+            <input class="form-control" formControlName="extension">
+          </label>
+          <label>Type:
+            <input class="form-control" formControlName="type">
+          </label>
+        </div>
+      </div>
+    </div>
+    <button (click)="addContactNumber()" type="button">Add Number</button>
+  </div>
+
+  <div formArrayName="regularScheduleFA" class="well well-lg">
+    <h4>Regular Schedule</h4>
+    <div *ngFor="let regularSchedule of regularScheduleFA.controls; let i=index" [formGroupName]="i" >
+      <div style="margin-left: 1em;">
+        <div class="form-group">
+          <label>Weekday:
+            <input class="form-control" formControlName="weekday">
+          </label>
+          <label>Opens at:
+            <input class="form-control" formControlName="opensAt">
+          </label>
+          <label>Closes at:
+            <input class="form-control" formControlName="closesAt">
+          </label>
+        </div>
+      </div>
+    </div>
+    <button (click)="addRegularSchedule()" type="button">Add Schedule For Day</button>
+  </div>
+
+  <input type="submit" value="Save"/>
+  <input type="button" value="Clone"/>
+
+</form>
+
+
+<!--
+<p> Form value: {{ serviceForm.value | json }}</p>
+<p> Form status: {{ serviceForm.status | json }}</p>
+-->
+

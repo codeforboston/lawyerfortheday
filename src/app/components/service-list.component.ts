@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Service } from './data-model';
-import { LegalServicesService } from './legal-services.service';
+import { Service } from '../data-model';
+import { LegalServicesService } from '../services/legal-services.service';
 
 @Component({
     selector: 'service-list',

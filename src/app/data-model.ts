@@ -1,52 +1,63 @@
-export class Organization {
-    id = '';
-    name = '';
-    alternate_name =' ';
-    description = '';
-    email = '';
-    url = '';
-    tax_status = '';
-    tax_id = '';
-    year_incorporated = '';
-    legal_status = '';
-}
-
 export class Service {
     id = '';
-    organization_id = '';
-    location_id = '';
-    program_id = '';
-    name = '';
-    alternate_name = '';
+    organization: Organization;
+    program: Program;
+    contact: Contact;
+    physicalAddress: PhysicalAddress;
+    contactNumbers: ContactNumber[];
+    regularSchedules: RegularSchedule[];
+    name = ''; 
     description = '';
     url = '';
     email = '';
-    status = '';
-    interpretation_services = '';
-    application_process = '';
-    wait_time = '';
+    status = 'active';
+    applicationProcess = '';
     fees = '';
-    accreditations = '';
-    licenses = '';
 }
 
-export class Location {
-    id = '';
-    organization_id = '';
+export class Organization {
+    id = ''; 
     name = '';
-    alternate_name = '';
-    description = '';
-    transportation = '';
-    latitude = '';
-    longitude = '';
+    description = ''; 
+    email = '';
+    url = '';
+    taxStatus = '';
+    taxId = '';
+    yearIncorporated = '';
+    legalStatus = '';
+}
+
+export class Program {
+    id = '';
+    name = '';
+}
+
+export class PhysicalAddress {
+    id = ''; 
+    address1 = ''; 
+    address2 = '';
+    city = ''; 
+    stateProvince = ''; 
+    postalCode = ''; 
+    country = 'USA'; 
+}
+
+export class ContactNumber {
+    id = ''; 
+    number = '';  
+    extension = '';
+    type = '';
 }
 
 export class RegularSchedule {
+    id = ''; 
+    weekday = ''; 
+    opensAt = '';
+    closesAt = '';
+}
+
+export class Contact {
     id = '';
-    service_id = '';
-    location_id = '';
-    service_at_location_id = '';
-    weekday = 0;
-    opens_at = '';
-    closes_at = '';
+    name = '';
+    title = '';
 }

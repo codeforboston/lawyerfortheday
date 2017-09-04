@@ -5,12 +5,11 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ServiceDetailComponent } from './service-detail.component';
-import { ServiceListComponent } from './service-list.component';
-import { OrganizationComponent } from './organization.component';
-import { LocationComponent } from './location.component';
-import { RegularScheduleComponent } from './regular-schedule.component';
-import { LegalServicesService } from './legal-services.service';
+import { ServiceDetailComponent } from './components/service-detail.component';
+import { ServiceListComponent } from './components/service-list.component';
+import { OrganizationDetailComponent } from './components/organization-detail.component';
+import { OrganizationListComponent } from './components/organization-list.component';
+import { LegalServicesService } from './services/legal-services.service';
 
 
 @NgModule({
@@ -18,9 +17,8 @@ import { LegalServicesService } from './legal-services.service';
     AppComponent,
     ServiceDetailComponent,
     ServiceListComponent,
-    OrganizationComponent,
-    LocationComponent,
-    RegularScheduleComponent
+    OrganizationDetailComponent,
+    OrganizationListComponent,
   ],
   imports: [
     BrowserModule,
