@@ -1,11 +1,10 @@
+<h1>Service Form</h1>
 <form [formGroup]="serviceForm" novalidate>
-  <h3>Service Form</h3>
 
   <div class="form-group">
-      <label class="center-block">Organization:
-        <input class="form-control" formControlName="organizationName">
-      </label>
-    </div>
+    <label class="center-block">Organization:</label>
+    <input class="form-control" type="text" formControlName="organizationName">
+  </div>
   <div class="form-group">
     <label class="center-block">Name:
       <input class="form-control" formControlName="name">
@@ -16,25 +15,32 @@
       <textarea class="form-control" formControlName="description"></textarea>
     </label>
   </div>
-  <div class="form-group">
-    <label class="half-width">Url:
+
+  <div class="form-row">
+    <div class="form-group col">
+      <label>Url:</label>
       <input class="form-control" formControlName="url">
-    </label>
-    <label class="half-width">Email:
+    </div>
+    <div class="form-group col-5">
+      <label>Email:</label>
       <input class="form-control" formControlName="email">
-    </label>
+    </div>
   </div>
-  <div class="form-group">
-    <label class="half-width">Status:
+
+  <div class="form-row">
+    <div class="form-group col">
+      <label>Status:</label>
       <input class="form-control" formControlName="status">
-    </label>        
-    <label class="half-width">Fees:
+    </div>
+    <div class="form-group col">
+      <label>Fees:</label>
       <input class="form-control" formControlName="fees">
-    </label>
+    </div>
   </div>
+
   <div class="form-group">
     <label class="center-block">Application Process:
-      <textarea class="form-control" formControlName="applicationProcess"></textarea>
+      <textarea class="form-control" formControlName="applicationProcess" rows="3"></textarea>
     </label>
   </div>
 
@@ -56,12 +62,16 @@
 
   <div formGroupName="contact" class="well well-lg">
     <h4>Contact</h4>
-    <label class="half-width">Name:
-      <input class="form-control" formControlName="name">
-    </label>
-    <label class="half-width">Title:
-      <input class="form-control" formControlName="title">
-    </label>
+    <div class="row">
+      <div class="col">
+        <label class="half-width">Name:</label>
+        <input class="form-control" formControlName="name">
+      </div>
+      <div class="col">
+        <label class="half-width">Title:</label>
+        <input class="form-control" formControlName="title">
+    </div>
+    </div>
   </div>
 
   <div formGroupName="physicalAddress" class="well well-lg">
@@ -72,18 +82,20 @@
     <label class="center-block">Line 2:
       <input class="form-control" formControlName="address2">
     </label>
-    <label class="half-width">City:
-      <input class="form-control" formControlName="city">
-    </label>
-    <label class="half-width">State:
-      <input class="form-control" formControlName="stateProvince">
-    </label>
-    <label class="half-width">Postal Code:
-      <input class="form-control" formControlName="postalCode">
-    </label>
-    <label class="half-width">Country:
-      <input class="form-control" formControlName="country">
-    </label>
+    <div class="row">
+      <div class="col-6">
+        <label class="half-width">City:</label>
+        <input class="form-control" formControlName="city">
+      </div>
+      <div class="col-4">    
+        <label class="half-width">State:</label>
+        <input class="form-control" formControlName="stateProvince" placeholder="MA">
+      </div>
+      <div class="col-2">
+        <label class="half-width">Postal Code:</label>
+        <input class="form-control" formControlName="postalCode">
+      </div>
+    </div>
   </div>
 
   <div formArrayName="contactNumberFA" class="well well-lg">
@@ -91,44 +103,50 @@
     <div *ngFor="let contactNumber of contactNumberFA.controls; let i=index" [formGroupName]="i" >
       <!-- The repeated phone template -->
       <div style="margin-left: 1em;">
-        <div class="form-group">
-          <label>Number:
+        <div class="form-group row">
+          <div class="col">
+            <label>Number:</label>
             <input class="form-control" formControlName="number">
-          </label>
-          <label>Extension:
+          </div>
+          <div class="col">
+            <label>Extension:</label>
             <input class="form-control" formControlName="extension">
-          </label>
-          <label>Type:
+          </div>
+          <div class="col">
+            <label>Type:</label>
             <input class="form-control" formControlName="type">
-          </label>
+          </div>
         </div>
       </div>
     </div>
-    <button (click)="addContactNumber()" type="button">Add Number</button>
+    <button (click)="addContactNumber()" type="button"class="btn btn-secondary">Add</button>
   </div>
 
   <div formArrayName="regularScheduleFA" class="well well-lg">
     <h4>Regular Schedule</h4>
     <div *ngFor="let regularSchedule of regularScheduleFA.controls; let i=index" [formGroupName]="i" >
       <div style="margin-left: 1em;">
-        <div class="form-group">
-          <label>Weekday:
-            <input class="form-control" formControlName="weekday">
-          </label>
-          <label>Opens at:
-            <input class="form-control" formControlName="opensAt">
-          </label>
-          <label>Closes at:
-            <input class="form-control" formControlName="closesAt">
-          </label>
+        <div class="form-group row">
+          <div class="col">
+            <label>Weekday:</label>
+            <input class="form-control" formControlName="weekday" placeholder="Monday - Friday">
+          </div>
+          <div class="col">
+            <label>Opens at:</label>
+            <input class="form-control" formControlName="opensAt" placeholder="9:00 am">
+          </div>
+          <div class="col">
+            <label>Closes at:</label>
+            <input class="form-control" formControlName="closesAt" placeholder="5:00 pm">
+          </div>
         </div>
       </div>
     </div>
-    <button (click)="addRegularSchedule()" type="button">Add Schedule For Day</button>
+    <button (click)="addRegularSchedule()" type="button" class="btn btn-secondary">Add</button>
   </div>
 
-  <input type="submit" value="Save"/>
-  <input type="button" value="Clone"/>
+  <input type="submit" class="btn btn-primary btn-lg" value="Save"/>
+  <input type="button" class="btn btn-primary btn-lg" value="Copy"/>
 
 </form>
 

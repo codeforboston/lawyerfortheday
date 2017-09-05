@@ -21,6 +21,7 @@ export class OrganizationListComponent {
     }
 
     onSelect(organization): void {
-        this.selectedOrganization = organization;
+        console.log(organization);
+        //this.selectedOrganization = organization;
     }
 }

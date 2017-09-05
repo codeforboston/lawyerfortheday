@@ -1,10 +1,13 @@
-<h2>Organizations</h2>
-<h3>Data source: http://developer.open.referral.adopta.agency/</h3>
+<h1>Organizations</h1>
 
-<div style="float:left; width: 20%">
-    <a *ngFor="let organization of organizations" (click)="onSelect(organization)">{{ organization.name }}<br/></a>
-</div>
+<form class="form-group">
+    <select class="form-control" name="org" [(ngModel)]="selectedOrganization">
+        <option *ngFor="let organization of organizations" [value]="organization">{{organization.name}}
+        </option>
+    </select>
 
-<div style="float:left; width: 80%" *ngIf="selectedOrganization">
-    <organization-detail [organization]="selectedOrganization"></organization-detail>
-</div>
+    <div *ngIf="selectedOrganization">
+        <organization-detail [organization]="selectedOrganization"></organization-detail>
+    </div>
+
+</form>

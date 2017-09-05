@@ -54,9 +54,9 @@ export class ServiceDetailComponent {
         /* initialize regular schedules form array */
         var schedule = new RegularSchedule();
         schedule.id = '';
-        schedule.weekday = 'Monday';
-        schedule.opensAt = '9:00 am';
-        schedule.closesAt = '5:00 pm'
+        schedule.weekday = '';
+        schedule.opensAt = '';
+        schedule.closesAt = ''
         this.regularSchedules = [schedule];
         const regularScheduleFGs = this.regularSchedules.map(regularSchedule => this.fb.group(regularSchedule));
         const regularScheduleFA = this.fb.array(regularScheduleFGs);
