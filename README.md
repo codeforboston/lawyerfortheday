@@ -43,4 +43,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Back-end Implementation
 In development, we are using https://github.com/adopta-agency/open-referral-api (implementation of HSDS v1.1, to be used for this project). This API prototype is a full application. It is a Amazon Aurora (MySQL compliant) database, with the API running on AWS EC2 Linux instance running Apache, coded in PHP 5.3. The prototype is currently going through an overhaul in support of version 1.2. Once done, there will be a live version, as well as a sandbox version. The code for the entire API will be available on Github for forking and download.
 
-In production, we will clone an instance of the above API server.
+In production, we will clone an instance of this API server.
