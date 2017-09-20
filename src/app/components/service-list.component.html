@@ -1,9 +1,40 @@
-<h1>List of Legal Services</h1>
+<div>
+  <md-table #table [dataSource]="dataSource" mdSort>
 
-<div style="float:left; width: 20%">
-    <a *ngFor="let service of services" (click)="onSelect(service)">{{service.name}}<br/></a>
-</div>
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
 
-<div style="float:left; width: 80%" *ngIf="selectedService">
-    <service-detail [service]="selectedService"></service-detail>
+    <ng-container mdColumnDef="name">
+      <md-header-cell *mdHeaderCellDef md-sort-header> Name of Program </md-header-cell>
+      <md-cell *mdCellDef="let element"><a href="service-edit/{{ element._id }}"> {{element.name}} </a></md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="organizationName">
+        <md-header-cell *mdHeaderCellDef md-sort-header> Organization </md-header-cell>
+        <md-cell *mdCellDef="let element">{{element.organizationName}}</md-cell>
+      </ng-container>
+
+    <ng-container mdColumnDef="description">
+      <md-header-cell *mdHeaderCellDef md-sort-header> Description </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.description}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="city">
+      <md-header-cell *mdHeaderCellDef md-sort-header> City </md-header-cell>
+      <md-cell *mdCellDef="let element" (click)="openDialog(element._id)"> {{element.physicalAddress.city}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="county">
+      <md-header-cell *mdHeaderCellDef md-sort-header> County </md-header-cell>
+      <md-cell *mdCellDef="let element" (click)="openDialog(element._id)"> {{element.physicalAddress.county}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="court">
+      <md-header-cell *mdHeaderCellDef md-sort-header> Court </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.court}} </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
 </div>

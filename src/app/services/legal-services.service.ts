@@ -8,7 +8,7 @@ import { Service, Organization } from '../data-model';
 @Injectable()
 export class LegalServicesService {
     private serviceUrl = "http://hsda.api.adopta.agency/services/complete/?per_page=15";
-    private organizationUrl = "http://hsda.api.adopta.agency/organizations/complete/";
+    private organizationUrl = "http://hsda.api.adopta.agency/organizations/complete/?per_page=20";
 
     constructor(private http: Http) { }
 
@@ -16,13 +16,6 @@ export class LegalServicesService {
         return this.http.get(this.serviceUrl)
             .toPromise()
             .then(response => response.json() as Service[])
-            .catch(this.handleError);
-    }
-
-    getOrganization(organizationId): Promise<Organization> {
-        return this.http.get(this.organizationUrl + organizationId)
-            .toPromise()
-            .then(response => response.json() as Organization)
             .catch(this.handleError);
     }
 

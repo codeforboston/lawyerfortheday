@@ -1,7 +1,8 @@
 export class Service {
-    id = '';
-    organization: Organization;
-    program: Program;
+    _id = '';
+    _rev: null;
+    //organization: Organization;
+    organizationName = '';
     contact: Contact;
     physicalAddress: PhysicalAddress;
     contactNumbers: ContactNumber[];
@@ -10,13 +11,14 @@ export class Service {
     description = '';
     url = '';
     email = '';
-    status = 'active';
+    court = '';
     applicationProcess = '';
+    geographicEligibility = '';
+    financialEligibility = '';
     fees = '';
 }
 
 export class Organization {
-    id = ''; 
     name = '';
     description = ''; 
     email = '';
@@ -25,39 +27,42 @@ export class Organization {
     taxId = '';
     yearIncorporated = '';
     legalStatus = '';
+    services: Service[];
 }
 
 export class Program {
-    id = '';
     name = '';
 }
 
 export class PhysicalAddress {
-    id = ''; 
-    address1 = ''; 
-    address2 = '';
+    address_1 = ''; 
+    address_2 = '';
+    address_3 = '';
+    county = ''; 
     city = ''; 
-    stateProvince = ''; 
-    postalCode = ''; 
+    state = ''; 
+    zip = '';
     country = 'USA'; 
 }
 
-export class ContactNumber {
-    id = ''; 
+export class ContactNumber { 
     number = '';  
     extension = '';
     type = '';
 }
 
 export class RegularSchedule {
-    id = ''; 
     weekday = ''; 
     opensAt = '';
     closesAt = '';
 }
 
 export class Contact {
-    id = '';
     name = '';
     title = '';
+}
+
+export class Eligibility {
+    name = '';
+    type = '';
 }
