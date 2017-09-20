@@ -41,6 +41,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 # Back-end Implementation
-In development, we are using https://github.com/adopta-agency/open-referral-api (implementation of HSDS v1.1, to be used for this project). This API prototype is a full application. It is a Amazon Aurora (MySQL compliant) database, with the API running on AWS EC2 Linux instance running Apache, coded in PHP 5.3. The prototype is currently going through an overhaul in support of version 1.2. Once done, there will be a live version, as well as a sandbox version. The code for the entire API will be available on Github for forking and download.
+## CouchDB database
+We use a CouchDB database named 'legalservices' to store documents posted from front end forms via the CouchDB REST API. To instantiate this database locally: 
+* Install the server from http://couchdb.apache.org
+* Create a database called 'legalservices'
+* Turn on CORS in settings
 
-In production, we will clone an instance of this API server.
+## OpenReferral API server
+In the long term, we will use https://github.com/adopta-agency/open-referral-api (implementation of HSDS v1.1, to be used for this project) as our back-end. This API prototype is a full application. It is a Amazon Aurora (MySQL compliant) database, with the API running on AWS EC2 Linux instance running Apache, coded in PHP 5.3. The prototype is currently going through an overhaul in support of version 1.2. Once done, there will be a live version, as well as a sandbox version. The code for the entire API will be available on Github for forking and download.
+
+The API is still under development which is why we are using our own custom database for now, storing data in a format close to the standard. The CouchDB data can be later made available in OpenReferral format.
