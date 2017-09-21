@@ -4,11 +4,12 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Service, Organization } from '../data-model';
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class CouchDBService {
     private headers = new Headers({'Content-Type': 'application/json'});    
-    private dbUrl = "http://localhost:5984/";
+    private dbUrl = environment.dbURL;
     private generateUuidUrl = this.dbUrl + "_uuids";
     private baseServiceUrl = this.dbUrl + "legalservices/";
     private fetchAllServicesUrl = this.baseServiceUrl + "_all_docs?include_docs=true";
