@@ -18,7 +18,7 @@ import {ServiceViewComponent} from './service-view.component';
     templateUrl: './service-list.component.html'
 })
 export class ServiceListComponent {
-    displayedColumns = ['name', 'organizationName', 'description', , 'county', 'court'];
+    displayedColumns = ['name', 'organizationName', 'county', 'court'];
     dataSource: DataSource<any>;
     serviceDatabase = new ServiceDatabase();
 
@@ -85,7 +85,6 @@ export class ServiceDataSource extends DataSource<any> {
             switch (this._sort.active) {
                 case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
                 case 'organizationName': [propertyA, propertyB] = [a.organizationName, b.organizationName]; break;
-                case 'description': [propertyA, propertyB] = [a.description, b.description]; break;
                 case 'city': [propertyA, propertyB] = [a.physicalAddress.city, b.physicalAddress.city]; break;
                 case 'county': [propertyA, propertyB] = [a.physicalAddress.county, b.physicalAddress.county]; break;
                 case 'court': [propertyA, propertyB] = [a.court, b.court]; break;

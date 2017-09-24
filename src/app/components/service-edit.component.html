@@ -1,152 +1,238 @@
-<h3>Edit Service</h3>
+<h2><i>Enter Program Details</i></h2>
+<br/>
+<form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
 
-<form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" novalidate>
-
-  <div class="form-group">
-    <label class="center-block">Organization:</label>
-    <input class="form-control" type="text" formControlName="organizationName">
-  </div>
-  <div class="form-group">
-    <label class="center-block">Service Name:
-      <input class="form-control" formControlName="name">
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Court:
-      <input class="form-control" formControlName="court">
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Description:
-      <textarea class="form-control" formControlName="description"></textarea>
-    </label>
+  <div class="form-group row bg-light p-3">
+    <label for="organizationName" class="col-sm-2 col-form-label">Coordinating Organization</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-lg" id="organizationName" formControlName="organizationName"
+        placeholder="Organization name">
+    </div>
   </div>
 
-  <div class="form-group">
-    <label class="center-block">Geographic Eligibility:
-      <textarea class="form-control" formControlName="geographicEligibility"></textarea>
-    </label>
-  </div>
-  <div class="form-group">
-    <label class="center-block">Financial Eligibility:
-      <textarea class="form-control" formControlName="financialEligibility"></textarea>
-    </label>
+  <div class="form-group row bg-light p-3">
+    <label for="name" class="col-sm-2 col-form-label">Program</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-lg" id="name" formControlName="name" placeholder="Program name">
+    </div>
   </div>
 
-  <div formGroupName="physicalAddress" class="well well-lg">
-    <h4>Address</h4>
-    <label class="center-block">Line 1:
-      <input class="form-control" formControlName="address_1">
-    </label> 
-    <label class="center-block">Line 2:
-      <input class="form-control" formControlName="address_2">
-    </label>
-    <label class="center-block">Line 3:
-      <input class="form-control" formControlName="address_3">
-    </label>
-    <label class="center-block">County:
-      <input class="form-control" formControlName="county">
-    </label>
-    <div class="row">
-      <div class="col-6">
-        <label class="half-width">City:</label>
-        <input class="form-control" formControlName="city">
-      </div>
-      <div class="col-4">    
-        <label class="half-width">State:</label>
-        <input class="form-control" formControlName="state" placeholder="MA">
-      </div>
-      <div class="col-2">
-        <label class="half-width">Zip:</label>
-        <input class="form-control" formControlName="zip">
+  <div class="form-group row bg-light p-3">
+    <label for="court" class="col-sm-2 col-form-label">Court</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-lg" id="court" formControlName="court" placeholder="Court">
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="description" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10">
+      <textarea class="form-control form-control-lg" formControlName="description" id="description"
+        placeholder="Description" rows="4"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="servicesProvided" class="col-sm-2 col-form-label">Services Provided</label>
+    <div class="col-sm-10">
+      <div formArrayName="servicesProvided">
+        <div *ngFor="let serviceProvided of servicesProvided.controls, let i = index">
+          <input type="checkbox" [formControl]="serviceProvided">   {{servicesProvidedOptions[i]}}
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="well well-lg">
-    <div class="form-row">
-        <div class="form-group col">
-        <label>Url:</label>
-        <input class="form-control" formControlName="url">
+  <div class="form-group row bg-light p-3">
+    <label for="otherServicesProvided" class="col-sm-2 col-form-label">Other Services Provided</label>
+    <div class="col-sm-10">
+      <textarea class="form-control form-control-lg" formControlName="otherServicesProvided" rows="3" 
+        placeholder="Other services provided"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="geographicEligibility" class="col-sm-2 col-form-label">Geographic Eligibility</label>
+    <div class="col-sm-10">
+      <textarea class="form-control form-control-lg" formControlName="geographicEligibility"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="financialEligibility" class="col-sm-2 col-form-label">Financial Eligibility</label>
+    <div class="col-sm-10">
+      <textarea class="form-control form-control-lg" formControlName="financialEligibility"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label class="col-sm-2 col-form-label">Address</label>
+    <div formGroupName="physicalAddress" class="col-sm-10">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg" formControlName="address_1" placeholder="Line 1">
         </div>
-        <div class="form-group col-5">
-        <label>Email:</label>
-        <input class="form-control" formControlName="email">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg" formControlName="address_2" placeholder="Line 2">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg" formControlName="address_3" placeholder="Other location details">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg" formControlName="county" placeholder="County">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-sm-6">
+            <input class="form-control form-control-lg" formControlName="city" placeholder="City">
+          </div>
+          <div class="form-group col-sm-4">    
+            <input class="form-control form-control-lg" formControlName="state" placeholder="MA">
+          </div>
+          <div class="form-group col-sm-2">
+            <input class="form-control form-control-lg" formControlName="zip" placeholder="Zip">
+          </div>
         </div>
     </div>
   </div>
 
-  <div formArrayName="contactNumbers" class="well well-lg">
-    <h4>Contact Numbers</h4>
-    <div *ngFor="let contactNumber of contactNumbers.controls; let i=index" [formGroupName]="i" >
-      <!-- The repeated phone template -->
-      <div style="margin-left: 1em;">
+  <div class="form-group row bg-light p-3">
+    <label for="url" class="col-sm-2 col-form-label">Url</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control form-control-lg" formControlName="url">
+    </div>
+  </div>
+
+  <div class="form-group bg-light row p-3">
+    <label for="email" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control form-control-lg" formControlName="email">
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label class="col-sm-2 col-form-label">Contact Numbers</label>
+    <div formArrayName="contactNumbers" class="col-sm-10">
+      <div *ngFor="let contactNumber of contactNumbers.controls; let i=index" [formGroupName]="i" >
+        <!-- The repeated phone template -->
         <div class="form-group row">
           <div class="col">
-            <label>Number:</label>
-            <input class="form-control" formControlName="number">
+            <input class="form-control form-control-lg" formControlName="number" placeholder="Number">
           </div>
           <div class="col">
-            <label>Extension:</label>
-            <input class="form-control" formControlName="extension">
+            <input class="form-control form-control-lg" formControlName="extension" placeholder="Extension">
           </div>
           <div class="col">
-            <label>Type:</label>
-            <input class="form-control" formControlName="type">
+            <input class="form-control form-control-lg" formControlName="type" placeholder="Type">
           </div>
         </div>
       </div>
+      <button (click)="addContactNumber()" type="button"class="btn btn-secondary">Add</button>
     </div>
-    <button (click)="addContactNumber()" type="button"class="btn btn-secondary">Add</button>
   </div>
 
-  <div formGroupName="contact" class="well well-lg">
-    <h4>Contact</h4>
-    <div class="row">
-      <div class="col">
-        <label class="half-width">Name:</label>
-        <input class="form-control" formControlName="name">
+  <div formGroupName="contact" class="form-group row bg-light p-3">
+    <label class="col-sm-2 col-form-label">Contact Person</label>
+    <div class="col-sm-10">
+      <div class="form-group row">
+        <div class="col">
+          <input class="form-control form-control-lg" formControlName="name" placeholder="Name">
+        </div>
+        <div class="col">
+          <input class="form-control form-control-lg" formControlName="title" placeholder="Title">
+        </div>
       </div>
-      <div class="col">
-        <label class="half-width">Title:</label>
-        <input class="form-control" formControlName="title">
-    </div>
     </div>
   </div>
 
-  <div formArrayName="regularSchedules" class="well well-lg">
-    <h4>Regular Schedule</h4>
-    <div *ngFor="let regularSchedule of regularSchedules.controls; let i=index" [formGroupName]="i" >
-      <div style="margin-left: 1em;">
+  <div formArrayName="regularSchedules" class="form-group row bg-light p-3">
+    <label class="col-sm-2 col-form-label">Regular Schedule</label>
+    <div class="col-sm-10">
+      <div *ngFor="let regularSchedule of regularSchedules.controls; let i=index" [formGroupName]="i" >
         <div class="form-group row">
-          <div class="col-2">
-            <label>{{regularSchedule.get('weekday').value}}</label>    
+          <div class="col-2">{{regularSchedule.get('weekday').value}}</div>
+          <div class="col">
+            <input class="form-control form-control-lg" formControlName="opensAt" placeholder="{{regularSchedule.get('opensAt').value}}">
           </div>
           <div class="col">
-            <input class="form-control" formControlName="opensAt" placeholder="{{regularSchedule.get('opensAt').value}}">
-          </div>
-          <div class="col">
-            <input class="form-control" formControlName="closesAt" placeholder="{{regularSchedule.get('closesAt').value}}">
+            <input class="form-control form-control-lg" formControlName="closesAt" placeholder="{{regularSchedule.get('closesAt').value}}">
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="form-group">
-    <label class="center-block">Application Process:
-        <textarea class="form-control" formControlName="applicationProcess" rows="3"></textarea>
-    </label>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col">
-        <label>Fees:</label>
-        <input class="form-control" formControlName="fees">
+  <div class="form-group row bg-light p-3">
+    <label for="fees" class="col-sm-2 col-form-label">Volunteer Capacity</label>
+    <div class="col-sm-10">
+      <select class="form-control form-control-lg" formControlName="volunteerCapacity">
+        <option *ngFor="let option of volunteerCapacityOptions" [value]="option">{{option}}</option>
+      </select>
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-lg ">Save</button> 
+  <div class="form-group row bg-light p-3">
+    <label for="fees" class="col-sm-2 col-form-label">Training</label>
+    <div class="col-sm-10">
+      <div *ngFor="let option of trainingOptions" class="col-sm-2 form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="training" value="{{option}}"> {{option}}
+        &nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="fees" class="col-sm-2 col-form-label">Appointment Required</label>
+    <div class="col-sm-10">
+      <div class="col-sm-2 form-check form-check-inline">
+        <input class="form-check-input" type="radio" formControlName="appointmentRequired" value="yes"> Yes
+      </div>
+      <div class="col-sm-2 form-check form-check-inline">
+        <input class="form-check-input" type="radio" formControlName="appointmentRequired" value="no"> No
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="otherDetails" class="col-sm-2 col-form-label">Other Details</label>
+    <div class="col-sm-10">
+      <textarea class="form-control form-control-lg" formControlName="otherDetails" id="otherDetails" rows="3"
+        placeholder="Other miscellaneous details about this program"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="applicationProcess" class="col-sm-2 col-form-label">Application Process</label>
+    <div class="col-sm-10">
+      <textarea class="form-control form-control-lg" formControlName="applicationProcess" id="applicationProcess" rows="3"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="fees" class="col-sm-2 col-form-label">Fees</label>
+    <div class="col-sm-10">
+      <textarea class="form-control form-control-lg" formControlName="fees" id="fees" rows="3"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row bg-light p-3">
+    <label for="editorName" class="col-sm-2 col-form-label">Editor</label>
+    <div class="col-sm-5">
+        <input class="form-control form-control-lg" formControlName="editorName" placeholder="Please enter your name" required>
+    </div>
+    <div class="col-sm-5">
+        <input class="form-control form-control-lg" formControlName="editorEmail" placeholder="Please enter your email address" required>
+    </div>
+  </div>  
+
+  <div class="form-group row bg-light p-3">
+    <label for="editedAt" class="col-sm-2 col-form-label">Edited at</label>
+    <div class="col-sm-10">
+        <input class="form-control form-control-lg" formControlName="editedAt" placeholder="Date/time" required>
+    </div>
+  </div>  
+
+  <button type="submit" class="btn btn-primary btn-lg">Save</button> 
+  <button class="btn btn-lg">Cancel</button> 
+  <button class="btn btn-danger btn-lg">Delete</button> 
 
 </form>
 
@@ -154,5 +240,9 @@
 <!--
 <p> Form value: {{ serviceForm.value | json }}</p>
 <p> Form status: {{ serviceForm.status | json }}</p>
+
+Volunteer capacity: Insufficient/ Sufficient/ Excess/ Available to Assist
+Training: Provided, Required
+Appointment required
 -->
 

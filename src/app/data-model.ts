@@ -3,19 +3,28 @@ export class Service {
     _rev: null;
     //organization: Organization;
     organizationName = '';
-    contact: Contact;
-    physicalAddress: PhysicalAddress;
-    contactNumbers: ContactNumber[];
-    regularSchedules: RegularSchedule[];
     name = ''; 
-    description = '';
-    url = '';
-    email = '';
     court = '';
-    applicationProcess = '';
+    description = '';
+    servicesProvided: string[];
+    otherServicesProvided: '';
     geographicEligibility = '';
     financialEligibility = '';
+    physicalAddress: PhysicalAddress;
+    url = '';
+    email = '';
+    contactNumbers: ContactNumber[];
+    contact: Contact;
+    regularSchedules: RegularSchedule[];
+    volunteerCapacity: ''
+    training: '';
+    appointmentRequired: false;
+    applicationProcess = '';
     fees = '';
+    otherDetails = '';
+    editorName = '';
+    editorEmail = '';
+    editedAt = '';
 }
 
 export class Organization {
@@ -66,3 +75,26 @@ export class Eligibility {
     name = '';
     type = '';
 }
+
+export const ServicesProvidedOptions = [
+    'Legal advice and/or information', 
+    'Help with court forms and documents', 
+    'May file limited appearance courtroom representation', 
+    'Referrals to other service organizations',
+    'Help identifying legal issues',
+    'Limited representation in mediation'
+];
+
+export const VolunteerCapacityOptions = [
+    'Insufficient',
+    'Sufficient',
+    'Excess',
+    'Available to Assist'
+];
+
+export const TrainingOptions = [
+    'Provided',
+    'Required'
+];
+
+export const States = ['MA'];

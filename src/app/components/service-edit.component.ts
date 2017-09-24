@@ -1,11 +1,13 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location }                 from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { Service, Organization, Program, RegularSchedule, Contact, 
-    ContactNumber, PhysicalAddress } from '../data-model';
+    ContactNumber, PhysicalAddress, ServicesProvidedOptions, 
+    VolunteerCapacityOptions, TrainingOptions
+} from '../data-model';
 import { CouchDBService } from '../services/couchdb.service';
 
 @Component({
@@ -15,6 +17,9 @@ import { CouchDBService } from '../services/couchdb.service';
 export class ServiceEditComponent implements OnInit {
     service: Service;  // data
     serviceForm: FormGroup;     // form
+    servicesProvidedOptions = ServicesProvidedOptions;
+    volunteerCapacityOptions = VolunteerCapacityOptions;
+    trainingOptions = TrainingOptions;
 
     constructor(private fb: FormBuilder, 
         private webService: CouchDBService,
@@ -27,20 +32,29 @@ export class ServiceEditComponent implements OnInit {
 
     createForm() {
         this.serviceForm = this.fb.group({
-            name: '',
             organizationName: '',
+            name: '',
             court: '',
-            description: '',           
-            regularSchedules: this.fb.array([]),
+            description: '',       
+            geographicEligibility: '',
+            financialEligibility: '',
+            servicesProvided: this.fb.array([]),
+            otherServicesProvided: '',
             physicalAddress: this.getPhysicalAddressFG(null),
             url: '',
             email: '',
             contactNumbers: this.fb.array([]),
             contact: this.getContactFG(new Contact()),
-            geographicEligibility: '',
-            financialEligibility: '',
+            regularSchedules: this.fb.array([]),
+            volunteerCapacity: '',
+            training: '',
+            appointmentRequired: false,
             applicationProcess: '',
-            fees: ''
+            fees: '',
+            otherDetails: '',
+            editorName: '',
+            editorEmail: '',
+            editedAt: '',
         });
     }
 
@@ -78,14 +92,19 @@ export class ServiceEditComponent implements OnInit {
             email: this.service.email != null ? this.service.email : '',
             geographicEligibility: this.service.geographicEligibility != null ? this.service.geographicEligibility : '',
             financialEligibility: this.service.financialEligibility != null ? this.service.financialEligibility : '',
+            volunteerCapacity: this.service.volunteerCapacity != null ? this.service.volunteerCapacity : '',
+            training: this.service.training != null ? this.service.training : '',
+            appointmentRequired: this.service.appointmentRequired != null ? this.service.appointmentRequired : false,
             applicationProcess: this.service.applicationProcess != null ? this.service.applicationProcess : '',
-            fees: this.service.fees != null ? this.service.fees : ''
+            fees: this.service.fees != null ? this.service.fees : '',
+            otherDetails: this.service.otherDetails != null ? this.service.otherDetails : '',
         });
 
         this.serviceForm.setControl('physicalAddress', this.getPhysicalAddressFG(this.service.physicalAddress));
         this.serviceForm.setControl('contact', this.getContactFG(this.service.contact));
         this.serviceForm.setControl('regularSchedules', this.getRegularScheduleFA(this.service.regularSchedules));
         this.serviceForm.setControl('contactNumbers', this.getContactNumberFA(this.service.contactNumbers));
+        this.serviceForm.setControl('servicesProvided', this.getServicesProvidedFA(this.service.servicesProvided));
     }
 
     getRegularScheduleFA(_regularSchedules): FormArray {
@@ -143,6 +162,30 @@ export class ServiceEditComponent implements OnInit {
         return this.serviceForm.get('regularSchedules') as FormArray;
     }
 
+    getServicesProvidedFA(_servicesProvided): FormArray {
+        if (_servicesProvided == null) {
+            _servicesProvided = new Array<string>();
+        }
+        var ctrl;
+        var servicesProvidedFCs = new Array<FormControl>();
+        console.log(this.servicesProvidedOptions);
+
+        for (var i=0; i < this.servicesProvidedOptions.length; i++) {
+            if (_servicesProvided.includes(this.servicesProvidedOptions[i])) {
+                ctrl = new FormControl(true);
+            }
+            else {
+                ctrl = new FormControl(false);
+            }
+            servicesProvidedFCs.push(ctrl);
+        }
+        return this.fb.array(servicesProvidedFCs);
+    }
+
+    get servicesProvided(): FormArray {
+        return this.serviceForm.get('servicesProvided') as FormArray;
+    }
+
     ngOnChanges() {
         console.log("ngOnChanges");
         this.serviceForm.reset();
@@ -165,23 +208,39 @@ export class ServiceEditComponent implements OnInit {
         var regularSchedulesDeepCopy = formModel.regularSchedules.map(
             (regularSchedule: RegularSchedule) => Object.assign({}, regularSchedule)
         );
+        var servicesProvidedValues = new Array<string>();
+        for (var i = 0; i < formModel.servicesProvided.length; i++) {
+            if (formModel.servicesProvided[i]) {
+                servicesProvidedValues.push(this.servicesProvidedOptions[i]);
+            }
+        }
+
         const saveService: Service = {
             _id: this.service._id,
             _rev: this.service._rev,
             organizationName:formModel.organizationName,
-            contact: formModel.contact,
-            physicalAddress: formModel.physicalAddress,
-            contactNumbers: contactNumbersDeepCopy,
-            regularSchedules: regularSchedulesDeepCopy,
             name: formModel.name, 
-            description: formModel.description,
-            url: formModel.url,
-            email: formModel.email,
             court: formModel.court,
-            applicationProcess: formModel.applicationProcess,
+            description: formModel.description,
             financialEligibility: formModel.financialEligibility,
             geographicEligibility: formModel.geographicEligibility,
-            fees: formModel.fees
+            servicesProvided: servicesProvidedValues,
+            otherServicesProvided: formModel.otherServicesProvided,
+            regularSchedules: regularSchedulesDeepCopy,
+            physicalAddress: formModel.physicalAddress,
+            url: formModel.url,
+            email: formModel.email,
+            contactNumbers: contactNumbersDeepCopy,
+            contact: formModel.contact,
+            volunteerCapacity: formModel.volunteerCapacity,
+            training: formModel.training,
+            appointmentRequired: formModel.appointmentRequired,
+            applicationProcess: formModel.applicationProcess,
+            fees: formModel.fees,
+            otherDetails: formModel.otherDetails,
+            editorName: formModel.editorName,
+            editorEmail: formModel.editorEmail,
+            editedAt: formModel.editedAt
         }
         return saveService;
     }
