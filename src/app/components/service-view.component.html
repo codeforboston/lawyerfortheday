@@ -1,32 +1,104 @@
-Name: {{ service.name  }}
-<br/>
-Court: {{ service.court }}
-<br/>
-Description: {{ service.description }}
-<br/>
-Geographic Eligibility: {{ service.geographicEligibility }}
-<br/>
-Financila Eligibility: {{ service.financialEligibility }}
-<br/>
-Organization Name: {{ service.organizationName }}
-<br/>
-Contact: {{ service.contact.name }} {{ service.contact.title }}
-<br/>
-Email: {{ service.email }}
-<br/>
-
-
-
-<!-- contact: Contact;
-physicalAddress: PhysicalAddress;
-contactNumbers: ContactNumber[];
-regularSchedules: RegularSchedule[];
-name = ''; 
-description = '';
-url = '';
-email = '';
-court = '';
-applicationProcess = '';
-geographicEligibility = '';
-financialEligibility = '';
-fees = ''; -->
+<div class="card">
+    <div class="container">
+        <div class="card-body">
+            <h3 class="card-title">{{ service?.name }}
+                (<a href="service-edit/{{ service?._id }}" class="card-link">Edit</a>)
+            </h3>
+            <p class="card-text">{{ service?.description }}</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Coordinating Organization</div>
+            <div class="col-sm-6">{{ service?.organizationName }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Court</div>
+            <div class="col-sm-6">{{ service?.court }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Services Provided</div>
+            <div class="col-sm-6">
+                <div *ngFor="let serviceProvided of service?.servicesProvided">
+                    {{ serviceProvided }}</div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Other Services Provided</div>
+            <div class="col-sm-6">{{ service?.otherServicesProvided }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Geographic Eligibility</div>
+            <div class="col-sm-6">{{ service?.geographicEligibility }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Financial Eligibility</div>
+            <div class="col-sm-6">{{ service?.financialEligibility }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Address</div>
+            <div class="col-sm-6">
+                <div *ngIf="service?.physicalAddress?.address_1">{{ service?.physicalAddress?.address_1 }}</div>
+                <div *ngIf="service?.physicalAddress?.address_2">{{ service?.physicalAddress?.address_2 }}</div>
+                <div *ngIf="service?.physicalAddress?.address_3">{{ service?.physicalAddress?.address_3 }}</div>
+                <div *ngIf="service?.physicalAddress?.county">{{ service?.physicalAddress?.county }}</div>
+                <div *ngIf="service?.physicalAddress?.city">{{ service?.physicalAddress?.city }}</div>
+                <div *ngIf="service?.physicalAddress?.state">{{ service?.physicalAddress?.state }}</div>
+                <div *ngIf="service?.physicalAddress?.zip">{{ service?.physicalAddress?.zip }}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Website</div>
+            <div class="col-sm-6"><a href="{{ service?.url }}" target="_blank">{{ service?.url }}</a></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Email</div>
+            <div class="col-sm-6">{{ service?.email }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Contact Numbers</div>
+            <div class="col-sm-6">
+                <div *ngFor="let contactNumber of service?.contactNumbers">
+                    <span *ngIf="contactNumber?.number">{{ contactNumber?.number }} </span>
+                    <span *ngIf="contactNumber?.extension">, extension {{ contactNumber?.extension }} </span>
+                    <span *ngIf="contactNumber?.type">({{ contactNumber?.type }})</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Contact</div>
+            <div class="col-sm-6">
+                <span *ngIf="service?.contact?.name">{{ service?.contact?.name }}</span>
+                <span *ngIf="service?.contact?.title">, {{ service?.contact?.title }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Regular Schedule</div>
+            <div class="col-sm-6">
+                <div *ngFor="let day of service?.regularSchedules">
+                    <span *ngIf="day?.opensAt">
+                        {{day.weekday}} {{day.opensAt}} to {{day.closesAt}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Volunteer Capacity</div>
+            <div class="col-sm-6">{{ service?.volunteerCapacity }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Training</div>
+            <div class="col-sm-6">{{ service?.training }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Appointment Required</div>
+            <div class="col-sm-6">{{ service?.appointmentRequired }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Fees</div>
+            <div class="col-sm-6">{{ service?.fees }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Other Details</div>
+            <div class="col-sm-6">{{ service?.otherDetails }}</div>
+        </div>
+    </div>
+</div>

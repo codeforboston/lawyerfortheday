@@ -18,21 +18,25 @@ import {ServiceViewComponent} from './service-view.component';
     templateUrl: './service-list.component.html'
 })
 export class ServiceListComponent {
-    displayedColumns = ['name', 'organizationName', 'county', 'court'];
+    displayedColumns = ['name', 'organizationName', 'county', 'court' ,'edit'];
     dataSource: DataSource<any>;
     serviceDatabase = new ServiceDatabase();
 
     @ViewChild(MdSort) sort: MdSort;
 
-    // constructor(private webService: LegalServicesService) { }
     constructor(private webService: CouchDBService, public dialog: MdDialog) { }
 
     ngOnInit(): void {
+        
+    }
+
+    /* refresh service list every time */
+    ngAfterViewInit(): void {
         this.webService.getLegalServices().then(
-         legalServices => {
-            this.serviceDatabase.dataChange.next(legalServices);
-            this.dataSource = new ServiceDataSource(this.serviceDatabase, this.sort);
-         });
+            legalServices => {
+               this.serviceDatabase.dataChange.next(legalServices);
+               this.dataSource = new ServiceDataSource(this.serviceDatabase, this.sort);
+            });
     }
 
     ngOnChanges() :void {
@@ -42,7 +46,7 @@ export class ServiceListComponent {
     openDialog(serviceId) {
         console.log("serviceId " + serviceId);
         let dialogRef = this.dialog.open(ServiceViewComponent, {
-            width: '250px',
+            //width: '250px',
             data: {id: serviceId}
         });
     }

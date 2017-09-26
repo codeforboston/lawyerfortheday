@@ -68,6 +68,7 @@ export class ServiceEditComponent implements OnInit {
             this.webService.getLegalService(id).then(
                 service => {
                     this.service = service;
+                    console.log("s1:" + this.service._rev);
                     this.prepopulateForm();
                 }
             );
@@ -187,15 +188,23 @@ export class ServiceEditComponent implements OnInit {
     }
 
     ngOnChanges() {
-        console.log("ngOnChanges");
         this.serviceForm.reset();
         this.loadService();
     }
 
-    onSubmit() {
+    saveService() {
         this.service = this.prepareSaveService();
         this.webService.saveLegalService(this.service);
         this.router.navigateByUrl('/');
+    }
+
+    deleteService() {
+        this.webService.deleteLegalService(this.service);
+        this.router.navigateByUrl('/'); 
+    }
+
+    goBack() {
+        this.location.back();
     }
 
     // return new `Service` object containing a combination of original service value(s)

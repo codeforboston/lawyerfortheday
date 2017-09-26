@@ -59,6 +59,20 @@ export class CouchDBService {
             .catch(this.handleError);
     }
 
+    deleteLegalService(service:Service) {
+        return this.http.delete(this.baseServiceUrl + service._id + "?rev=" + service._rev, 
+            {headers: this.headers})
+            .toPromise()
+            .then(response => {
+                
+            })
+            .catch(this.handleError);
+    }
+    /*
+    curl -X DELETE http://127.0.0.1:5984/legalservices/8845d00927010801686e82b42c001b91?rev=2-71988f0a5e6e985ebf0bafa1fae3859c 
+    
+    */
+
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo only
         return Promise.reject(error.message || error);

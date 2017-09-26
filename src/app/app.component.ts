@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
           <a class="nav-link" routerLink="/service-list" routerLinkActive="active">Program List</a>
         </li>
         <li class="nav-item">
-          <a  class="nav-link" routerLink="/service-edit">Create New Program</a>
+          <a  class="nav-link" routerLink="/service-edit" routerLinkActive="active">Create New Program</a>
         </li>
       </ul>
       <div>

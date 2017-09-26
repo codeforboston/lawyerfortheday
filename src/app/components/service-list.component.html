@@ -6,7 +6,7 @@
 
     <ng-container mdColumnDef="name">
       <md-header-cell *mdHeaderCellDef md-sort-header>Program Name</md-header-cell>
-      <md-cell *mdCellDef="let element"><a href="service-edit/{{ element._id }}"> {{element.name}} </a></md-cell>
+      <md-cell *mdCellDef="let element"><a href="service-view/{{ element._id }}"> {{element.name}} </a></md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="organizationName">
@@ -16,17 +16,24 @@
 
     <ng-container mdColumnDef="city">
       <md-header-cell *mdHeaderCellDef md-sort-header>City</md-header-cell>
-      <md-cell *mdCellDef="let element" (click)="openDialog(element._id)"> {{element.physicalAddress.city}} </md-cell>
+      <md-cell *mdCellDef="let element"> {{element.physicalAddress.city}} </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="county">
       <md-header-cell *mdHeaderCellDef md-sort-header>County</md-header-cell>
-      <md-cell *mdCellDef="let element" (click)="openDialog(element._id)"> {{element.physicalAddress.county}} </md-cell>
+      <md-cell *mdCellDef="let element"> {{element.physicalAddress.county}} </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="court">
       <md-header-cell *mdHeaderCellDef md-sort-header>Court</md-header-cell>
       <md-cell *mdCellDef="let element"> {{element.court}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="edit">
+      <md-header-cell *mdHeaderCellDef md-sort-header></md-header-cell>
+      <md-cell *mdCellDef="let element">
+        <a href="service-edit/{{ element._id }}" class="btn btn-primary">Edit</a>
+      </md-cell>
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
