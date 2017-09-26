@@ -4,9 +4,9 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location }                 from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
-import { Service, Organization, Program, RegularSchedule, Contact, 
-    ContactNumber, PhysicalAddress, ServicesProvidedOptions, 
-    VolunteerCapacityOptions, TrainingOptions
+import { Service, Organization, Program, RegularSchedule, Contact,
+    ContactNumber, PhysicalAddress, ServicesProvidedOptions,
+    VolunteerCapacityOptions, TrainingOptions, CourtOptions
 } from '../data-model';
 import { CouchDBService } from '../services/couchdb.service';
 
@@ -20,8 +20,9 @@ export class ServiceEditComponent implements OnInit {
     servicesProvidedOptions = ServicesProvidedOptions;
     volunteerCapacityOptions = VolunteerCapacityOptions;
     trainingOptions = TrainingOptions;
+    courtOptions = CourtOptions;
 
-    constructor(private fb: FormBuilder, 
+    constructor(private fb: FormBuilder,
         private webService: CouchDBService,
         private router: Router,
         private route: ActivatedRoute,
@@ -35,7 +36,7 @@ export class ServiceEditComponent implements OnInit {
             organizationName: '',
             name: '',
             court: '',
-            description: '',       
+            description: '',
             geographicEligibility: '',
             financialEligibility: '',
             servicesProvided: this.fb.array([]),
@@ -47,6 +48,7 @@ export class ServiceEditComponent implements OnInit {
             contact: this.getContactFG(new Contact()),
             regularSchedules: this.fb.array([]),
             volunteerCapacity: '',
+            selectedCourt: '',
             training: '',
             appointmentRequired: false,
             applicationProcess: '',
@@ -78,11 +80,11 @@ export class ServiceEditComponent implements OnInit {
                 this.service = new Service();
                 this.service._id = uuid;
                 this.prepopulateForm();
-            });            
+            });
         }
     }
 
-    prepopulateForm() {        
+    prepopulateForm() {
         this.serviceForm.patchValue({
             name: this.service.name != null ? this.service.name : '',
             organizationName: this.service.organizationName != null ? this.service.organizationName : '',
@@ -94,6 +96,7 @@ export class ServiceEditComponent implements OnInit {
             geographicEligibility: this.service.geographicEligibility != null ? this.service.geographicEligibility : '',
             financialEligibility: this.service.financialEligibility != null ? this.service.financialEligibility : '',
             volunteerCapacity: this.service.volunteerCapacity != null ? this.service.volunteerCapacity : '',
+            selectedCourt: this.service.selectedCourt != null ? this.service.selectedCourt : '',
             training: this.service.training != null ? this.service.training : '',
             appointmentRequired: this.service.appointmentRequired != null ? this.service.appointmentRequired : false,
             applicationProcess: this.service.applicationProcess != null ? this.service.applicationProcess : '',
@@ -228,7 +231,7 @@ export class ServiceEditComponent implements OnInit {
             _id: this.service._id,
             _rev: this.service._rev,
             organizationName:formModel.organizationName,
-            name: formModel.name, 
+            name: formModel.name,
             court: formModel.court,
             description: formModel.description,
             financialEligibility: formModel.financialEligibility,
@@ -242,6 +245,7 @@ export class ServiceEditComponent implements OnInit {
             contactNumbers: contactNumbersDeepCopy,
             contact: formModel.contact,
             volunteerCapacity: formModel.volunteerCapacity,
+            selectedCourt: formModel.selectedCourt,
             training: formModel.training,
             appointmentRequired: formModel.appointmentRequired,
             applicationProcess: formModel.applicationProcess,
@@ -254,4 +258,3 @@ export class ServiceEditComponent implements OnInit {
         return saveService;
     }
 }
-
