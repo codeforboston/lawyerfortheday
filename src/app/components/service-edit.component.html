@@ -18,9 +18,11 @@
   </div>
 
   <div class="form-group row bg-light p-3">
-    <label for="court" class="col-sm-2 col-form-label">Court</label>
+    <label for="fees" class="col-sm-2 col-form-label">Court</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control form-control-lg" id="court" formControlName="court" placeholder="Court">
+      <select class="form-control" formControlName="selectedCourt">
+        <option *ngFor="let option of courtOptions" [value]="option">{{option.name}}</option>
+      </select>
     </div>
   </div>
 
@@ -46,7 +48,7 @@
   <div class="form-group row bg-light p-3">
     <label for="otherServicesProvided" class="col-sm-2 col-form-label">Other Services Provided</label>
     <div class="col-sm-10">
-      <textarea class="form-control form-control-lg" formControlName="otherServicesProvided" rows="3" 
+      <textarea class="form-control form-control-lg" formControlName="otherServicesProvided" rows="3"
         placeholder="Other services provided"></textarea>
     </div>
   </div>
@@ -84,7 +86,7 @@
           <div class="form-group col-sm-6">
             <input class="form-control form-control-lg" formControlName="city" placeholder="City">
           </div>
-          <div class="form-group col-sm-4">    
+          <div class="form-group col-sm-4">
             <input class="form-control form-control-lg" formControlName="state" placeholder="MA">
           </div>
           <div class="form-group col-sm-2">
@@ -221,18 +223,18 @@
     <div class="col-sm-5">
         <input class="form-control form-control-lg" formControlName="editorEmail" placeholder="Please enter your email address" required>
     </div>
-  </div>  
+  </div>
 
   <div class="form-group row bg-light p-3">
     <label for="editedAt" class="col-sm-2 col-form-label">Edited at</label>
     <div class="col-sm-10">
         <input class="form-control form-control-lg" formControlName="editedAt" placeholder="Date/time" required>
     </div>
-  </div>  
+  </div>
 
-  <button type="submit" class="btn btn-primary btn-lg">Save</button> 
-  <button class="btn btn-lg">Cancel</button> 
-  <button class="btn btn-danger btn-lg">Delete</button> 
+  <button type="submit" class="btn btn-primary btn-lg">Save</button>
+  <button class="btn btn-lg">Cancel</button>
+  <button class="btn btn-danger btn-lg">Delete</button>
 
 </form>
 
@@ -245,4 +247,3 @@ Volunteer capacity: Insufficient/ Sufficient/ Excess/ Available to Assist
 Training: Provided, Required
 Appointment required
 -->
-
