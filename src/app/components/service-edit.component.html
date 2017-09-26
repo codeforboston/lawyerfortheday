@@ -1,6 +1,6 @@
 <h2><i>Enter Program Details</i></h2>
 <br/>
-<form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="serviceForm">
 
   <div class="form-group row bg-light p-3">
     <label for="organizationName" class="col-sm-2 col-form-label">Coordinating Organization</label>
@@ -232,9 +232,9 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary btn-lg">Save</button>
-  <button class="btn btn-lg">Cancel</button>
-  <button class="btn btn-danger btn-lg">Delete</button>
+  <button type="submit" class="btn btn-primary btn-lg" (click)="saveService()">Save</button> 
+  <button class="btn btn-lg" (click)="goBack()">Cancel</button> 
+  <button class="btn btn-danger btn-lg" (click)="deleteService()">Delete</button> 
 
 </form>
 
