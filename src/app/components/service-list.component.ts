@@ -32,6 +32,8 @@ export class ServiceListComponent {
 
     /* refresh service list every time */
     ngAfterViewInit(): void {
+        console.log("ngAfterViewInit");
+
         this.webService.getLegalServices().then(
             legalServices => {
                this.serviceDatabase.dataChange.next(legalServices);
@@ -91,7 +93,7 @@ export class ServiceDataSource extends DataSource<any> {
                 case 'organizationName': [propertyA, propertyB] = [a.organizationName, b.organizationName]; break;
                 case 'city': [propertyA, propertyB] = [a.physicalAddress.city, b.physicalAddress.city]; break;
                 case 'county': [propertyA, propertyB] = [a.physicalAddress.county, b.physicalAddress.county]; break;
-                case 'court': [propertyA, propertyB] = [a.court, b.court]; break;
+                case 'court': [propertyA, propertyB] = [a.selectedCourt, b.selectedCourt]; break;
             }
 
             // let valueA = isNaN(+propertyA) ? propertyA : +propertyA;

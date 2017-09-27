@@ -35,7 +35,6 @@ export class ServiceEditComponent implements OnInit {
         this.serviceForm = this.fb.group({
             organizationName: '',
             name: '',
-            court: '',
             description: '',
             geographicEligibility: '',
             financialEligibility: '',
@@ -70,7 +69,6 @@ export class ServiceEditComponent implements OnInit {
             this.webService.getLegalService(id).then(
                 service => {
                     this.service = service;
-                    console.log("s1:" + this.service._rev);
                     this.prepopulateForm();
                 }
             );
@@ -88,7 +86,6 @@ export class ServiceEditComponent implements OnInit {
         this.serviceForm.patchValue({
             name: this.service.name != null ? this.service.name : '',
             organizationName: this.service.organizationName != null ? this.service.organizationName : '',
-            court: this.service.court != null ? this.service.court : '',
             description: this.service.description != null ? this.service.description : '',
             physicalAddress: this.getPhysicalAddressFG(this.service.physicalAddress),
             url: this.service.url != null ? this.service.url : '',
@@ -172,7 +169,6 @@ export class ServiceEditComponent implements OnInit {
         }
         var ctrl;
         var servicesProvidedFCs = new Array<FormControl>();
-        console.log(this.servicesProvidedOptions);
 
         for (var i=0; i < this.servicesProvidedOptions.length; i++) {
             if (_servicesProvided.includes(this.servicesProvidedOptions[i])) {
@@ -232,7 +228,6 @@ export class ServiceEditComponent implements OnInit {
             _rev: this.service._rev,
             organizationName:formModel.organizationName,
             name: formModel.name,
-            court: formModel.court,
             description: formModel.description,
             financialEligibility: formModel.financialEligibility,
             geographicEligibility: formModel.geographicEligibility,
@@ -246,7 +241,7 @@ export class ServiceEditComponent implements OnInit {
             contact: formModel.contact,
             volunteerCapacity: formModel.volunteerCapacity,
             selectedCourt: formModel.selectedCourt,
-            training: formModel.training,
+            training: formModel.trainingOptions,
             appointmentRequired: formModel.appointmentRequired,
             applicationProcess: formModel.applicationProcess,
             fees: formModel.fees,
@@ -255,6 +250,9 @@ export class ServiceEditComponent implements OnInit {
             editorEmail: formModel.editorEmail,
             editedAt: formModel.editedAt
         }
+
+        console.log (formModel.trainingOptions);
+
         return saveService;
     }
 }

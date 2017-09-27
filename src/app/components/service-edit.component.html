@@ -21,7 +21,7 @@
     <label for="courts" class="col-sm-2 col-form-label">Court</label>
     <div class="col-sm-10">
       <select class="form-control" formControlName="selectedCourt">
-        <option *ngFor="let option of courtOptions" [value]="option">{{option.name}}</option>
+        <option *ngFor="let option of courtOptions" [value]="option.name">{{option.name}}</option>
       </select>
     </div>
   </div>
@@ -175,7 +175,7 @@
     <label for="fees" class="col-sm-2 col-form-label">Training</label>
     <div class="col-sm-10">
       <div *ngFor="let option of trainingOptions" class="col-sm-2 form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="training" value="{{option}}"> {{option}}
+        <input class="form-check-input" type="checkbox" name="training" value="{{option}}"> {{option}}
         &nbsp;&nbsp;&nbsp;
       </div>
     </div>
@@ -242,8 +242,4 @@
 <!--
 <p> Form value: {{ serviceForm.value | json }}</p>
 <p> Form status: {{ serviceForm.status | json }}</p>
-
-Volunteer capacity: Insufficient/ Sufficient/ Excess/ Available to Assist
-Training: Provided, Required
-Appointment required
 -->

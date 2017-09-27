@@ -1,10 +1,8 @@
 export class Service {
     _id = '';
     _rev: null;
-    //organization: Organization;
     organizationName = '';
     name = '';
-    court = '';
     description = '';
     servicesProvided: string[];
     otherServicesProvided: '';
