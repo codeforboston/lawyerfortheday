@@ -251,8 +251,6 @@ export class ServiceEditComponent implements OnInit {
             editedAt: formModel.editedAt
         }
 
-        console.log (formModel.trainingOptions);
-
         return saveService;
     }
 }
