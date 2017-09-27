@@ -193,13 +193,19 @@ export class ServiceEditComponent implements OnInit {
 
     saveService() {
         this.service = this.prepareSaveService();
-        this.webService.saveLegalService(this.service);
-        this.router.navigateByUrl('/');
+        this.webService.saveLegalService(this.service).then(
+            response => {
+                this.router.navigateByUrl('/'); 
+            }
+        );
     }
 
     deleteService() {
-        this.webService.deleteLegalService(this.service);
-        this.router.navigateByUrl('/'); 
+        this.webService.deleteLegalService(this.service).then(
+            response => {
+                this.router.navigateByUrl('/'); 
+            }
+        );
     }
 
     goBack() {

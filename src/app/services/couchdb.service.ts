@@ -54,7 +54,7 @@ export class CouchDBService {
             {headers: this.headers})
             .toPromise()
             .then(response => {
-                
+                return response;
             })
             .catch(this.handleError);
     }
@@ -64,7 +64,7 @@ export class CouchDBService {
             {headers: this.headers})
             .toPromise()
             .then(response => {
-                
+                return response;
             })
             .catch(this.handleError);
     }
