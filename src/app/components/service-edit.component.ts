@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Location }                 from '@angular/common';
+import { DatePipe, Location }                 from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { Service, Organization, Program, RegularSchedule, Contact,
@@ -21,6 +21,7 @@ export class ServiceEditComponent implements OnInit {
     volunteerCapacityOptions = VolunteerCapacityOptions;
     trainingOptions = TrainingOptions;
     courtOptions = CourtOptions;
+    todayDate = Date.now();
 
     constructor(private fb: FormBuilder,
         private webService: CouchDBService,
@@ -99,6 +100,7 @@ export class ServiceEditComponent implements OnInit {
             applicationProcess: this.service.applicationProcess != null ? this.service.applicationProcess : '',
             fees: this.service.fees != null ? this.service.fees : '',
             otherDetails: this.service.otherDetails != null ? this.service.otherDetails : '',
+            editedAt: DatePipe.prototype.transform(Date.now(), 'yyyy-MM-ddTHH:mm')
         });
 
         this.serviceForm.setControl('physicalAddress', this.getPhysicalAddressFG(this.service.physicalAddress));
@@ -112,11 +114,11 @@ export class ServiceEditComponent implements OnInit {
         // regular schedule form array
         if (_regularSchedules == null) {
             _regularSchedules = [
-                {weekday:"Monday", opensAt:"9:00 am", closesAt:"5:00 pm"},
-                {weekday:"Tuesday", opensAt:"9:00 am", closesAt:"5:00 pm"},
-                {weekday:"Wednesday", opensAt:"9:00 am", closesAt:"5:00 pm"},
-                {weekday:"Thursday", opensAt:"9:00 am", closesAt:"5:00 pm"},
-                {weekday:"Friday", opensAt:"9:00 am", closesAt:"5:00 pm"},
+                {weekday:"Monday", opensAt:"09:00", closesAt:"17:00"},
+                {weekday:"Tuesday", opensAt:"09:00", closesAt:"17:00"},
+                {weekday:"Wednesday", opensAt:"09:00", closesAt:"17:00"},
+                {weekday:"Thursday", opensAt:"09:00", closesAt:"17:00"},
+                {weekday:"Friday", opensAt:"09:00", closesAt:"17:00"},
                 {weekday:"Saturday", opensAt:"", closesAt:""},
                 {weekday:"Sunday", opensAt:"", closesAt:""}
             ];

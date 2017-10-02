@@ -27,13 +27,6 @@ export class ServiceListComponent {
     constructor(private webService: CouchDBService, public dialog: MdDialog) { }
 
     ngOnInit(): void {
-        
-    }
-
-    /* refresh service list every time */
-    ngAfterViewInit(): void {
-        console.log("ngAfterViewInit");
-
         this.webService.getLegalServices().then(
             legalServices => {
                this.serviceDatabase.dataChange.next(legalServices);
