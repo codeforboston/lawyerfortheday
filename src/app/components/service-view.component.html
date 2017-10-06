@@ -1,7 +1,7 @@
 <div class="card">
     <div class="container">
         <div class="card-body">
-            <h3 class="card-title">{{ service?.name }}
+            <h3 class="card-title">Program: {{ service?.name }}
                 (<a href="service-edit/{{ service?._id }}" class="card-link">Edit</a>)
             </h3>
             <p class="card-text">{{ service?.description }}</p>
@@ -97,8 +97,19 @@
             <div class="col-sm-6">{{ service?.fees }}</div>
         </div>
         <div class="row">
-            <div class="col-sm-4 font-weight-bold text-right">Other Details</div>
-            <div class="col-sm-6">{{ service?.otherDetails }}</div>
+            <div class="col-sm-4 font-weight-bold text-right">Date Updated</div>
+            <div class="col-sm-6">{{ service?.dateUpdated }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 font-weight-bold text-right">Date Reviewed</div>
+            <div class="col-sm-6">{{ service?.dateReviewed }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 align-right"></div>
+            <div class="col-sm-6">
+                <br/>
+                <button type="submit" class="btn btn-primary btn-lg" (click)="markAsReviewed()">Mark As Reviewed</button>
+            </div>
         </div>
     </div>
 </div>

@@ -18,12 +18,11 @@ export class Service {
     selectedCourt: '';
     training: '';
     appointmentRequired: false;
-    applicationProcess = '';
     fees = '';
-    otherDetails = '';
     editorName = '';
     editorEmail = '';
-    editedAt = '';
+    dateUpdated = '';
+    dateReviewed = '';
 }
 
 export class Organization {

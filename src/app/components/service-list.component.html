@@ -29,6 +29,11 @@
       <md-cell *mdCellDef="let element"> {{element.selectedCourt}} </md-cell>
     </ng-container>
 
+    <ng-container mdColumnDef="dateReviewed">
+        <md-header-cell *mdHeaderCellDef md-sort-header>Date Last Reviewed</md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.dateReviewed}} </md-cell>
+      </ng-container>
+
     <ng-container mdColumnDef="edit">
       <md-header-cell *mdHeaderCellDef md-sort-header></md-header-cell>
       <md-cell *mdCellDef="let element">

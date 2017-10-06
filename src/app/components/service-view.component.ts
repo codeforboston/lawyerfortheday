@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Location }                 from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import { Service, Organization, Program, RegularSchedule, Contact, 
@@ -35,6 +35,15 @@ export class ServiceViewComponent implements OnInit {
                 }
             );
         }
+    }
+
+    markAsReviewed() {
+        this.service.dateReviewed = DatePipe.prototype.transform(Date.now(), 'yyyy-MM-ddTHH:mm');
+        this.webService.saveLegalService(this.service).then(
+            response => {
+                location.reload();
+            }
+        );
     }
 }
 

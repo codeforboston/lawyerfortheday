@@ -21,7 +21,6 @@ export class ServiceEditComponent implements OnInit {
     volunteerCapacityOptions = VolunteerCapacityOptions;
     trainingOptions = TrainingOptions;
     courtOptions = CourtOptions;
-    todayDate = Date.now();
 
     constructor(private fb: FormBuilder,
         private webService: CouchDBService,
@@ -51,12 +50,9 @@ export class ServiceEditComponent implements OnInit {
             selectedCourt: '',
             training: '',
             appointmentRequired: false,
-            applicationProcess: '',
             fees: '',
-            otherDetails: '',
             editorName: '',
-            editorEmail: '',
-            editedAt: '',
+            editorEmail: ''
         });
     }
 
@@ -97,9 +93,7 @@ export class ServiceEditComponent implements OnInit {
             selectedCourt: this.service.selectedCourt != null ? this.service.selectedCourt : '',
             training: this.service.training != null ? this.service.training : '',
             appointmentRequired: this.service.appointmentRequired != null ? this.service.appointmentRequired : false,
-            applicationProcess: this.service.applicationProcess != null ? this.service.applicationProcess : '',
             fees: this.service.fees != null ? this.service.fees : '',
-            otherDetails: this.service.otherDetails != null ? this.service.otherDetails : '',
             editedAt: DatePipe.prototype.transform(Date.now(), 'yyyy-MM-ddTHH:mm')
         });
 
@@ -197,7 +191,7 @@ export class ServiceEditComponent implements OnInit {
         this.service = this.prepareSaveService();
         this.webService.saveLegalService(this.service).then(
             response => {
-                this.router.navigateByUrl('/'); 
+                this.router.navigateByUrl('/service-view/' + this.service._id); 
             }
         );
     }
@@ -231,6 +225,8 @@ export class ServiceEditComponent implements OnInit {
             }
         }
 
+        var dateNow = DatePipe.prototype.transform(Date.now(), 'yyyy-MM-ddTHH:mm');
+
         const saveService: Service = {
             _id: this.service._id,
             _rev: this.service._rev,
@@ -251,12 +247,11 @@ export class ServiceEditComponent implements OnInit {
             selectedCourt: formModel.selectedCourt,
             training: formModel.trainingOptions,
             appointmentRequired: formModel.appointmentRequired,
-            applicationProcess: formModel.applicationProcess,
             fees: formModel.fees,
-            otherDetails: formModel.otherDetails,
             editorName: formModel.editorName,
             editorEmail: formModel.editorEmail,
-            editedAt: formModel.editedAt
+            dateUpdated: dateNow,
+            dateReviewed: dateNow
         }
 
         return saveService;

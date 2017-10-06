@@ -18,7 +18,7 @@ import {ServiceViewComponent} from './service-view.component';
     templateUrl: './service-list.component.html'
 })
 export class ServiceListComponent {
-    displayedColumns = ['name', 'organizationName', 'county', 'court' ,'edit'];
+    displayedColumns = ['name', 'organizationName', 'county', 'court', 'dateReviewed', 'edit'];
     dataSource: DataSource<any>;
     serviceDatabase = new ServiceDatabase();
 
@@ -36,14 +36,6 @@ export class ServiceListComponent {
 
     ngOnChanges() :void {
         console.log("ngOnChanges");
-    }
-
-    openDialog(serviceId) {
-        console.log("serviceId " + serviceId);
-        let dialogRef = this.dialog.open(ServiceViewComponent, {
-            //width: '250px',
-            data: {id: serviceId}
-        });
     }
 }
 
@@ -87,6 +79,7 @@ export class ServiceDataSource extends DataSource<any> {
                 case 'city': [propertyA, propertyB] = [a.physicalAddress.city, b.physicalAddress.city]; break;
                 case 'county': [propertyA, propertyB] = [a.physicalAddress.county, b.physicalAddress.county]; break;
                 case 'court': [propertyA, propertyB] = [a.selectedCourt, b.selectedCourt]; break;
+                case 'dateReviewed': [propertyA, propertyB] = [a.dateReviewed, b.dateReviewed]; break;
             }
 
             // let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
